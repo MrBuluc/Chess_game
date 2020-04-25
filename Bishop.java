@@ -1,8 +1,8 @@
 
 public class Bishop extends Piece {
 
-    public Bishop(int color, Square location) {
-        super(color, location);
+    public Bishop(int color, String column, int row) {
+        super(color, new Square(column,row));
     }
 
     @Override

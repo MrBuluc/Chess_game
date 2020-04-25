@@ -1,8 +1,8 @@
 
 public class Queen extends Piece {
 
-    public Queen(int color, Square location) {
-        super(color,location);
+    public Queen(int color, String column, int row) {
+        super(color, new Square(column,row));
     }
     
     @Override

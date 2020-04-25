@@ -1,9 +1,11 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //Scanner reader = new Scanner(System.in);
+        Scanner reader = new Scanner(System.in);
         ChessBoard board = new ChessBoard();
         System.out.println(board);
-        /*while (!board.isGameEnded()){
+        while (!board.isGameEnded()){
             System.out.println("It is " + (board.isWhitePlaying() ? "White" : "Black") + "'s turn");
             Piece piece = null;
                 do {
@@ -18,6 +20,6 @@ public class Main {
                 }while(!piece.canMove(to));
             piece.move(to);
             System.out.println(board);
-        } reader.close();*/
+        } reader.close();
     }
 }

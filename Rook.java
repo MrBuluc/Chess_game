@@ -1,8 +1,8 @@
 
 public class Rook extends Piece {
 
-    public Rook(int color, Square location) {
-        super(color, location);
+    public Rook(int color, String column, int row) {
+        super(color, new Square(column,row));
     }
     @Override
     public void move(String destination) {

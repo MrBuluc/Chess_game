@@ -1,8 +1,8 @@
 
 public class Knight extends Piece {
 
-    public Knight(int color, Square location) {
-        super(color,location);
+    public Knight(int color, String column, int row) {
+        super(color,new Square(column,row));
     }
 
     @Override

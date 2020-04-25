@@ -1,13 +1,13 @@
 
 public class Pawn extends Piece{
     boolean initialLocation = true;
-    public Pawn(int color, Square location) {
-        super(color, location);
+    public Pawn(int color, String column, int row) {
+        super(color, new Square(column,row));
     }
     @Override
     public boolean canMove(String to) {
         return true;
-        /*boolean validMove = false;
+        boolean validMove = false;
         Square targetLocation = location.getBoard().getSquareAt(to);
         int rowDistance = targetLocation.getRowDistance(location);
         if (this.location.isAtSameColumn(targetLocation)) {
@@ -36,9 +36,13 @@ public class Pawn extends Piece{
             if (color == ChessBoard.WHITE && rowDistance == 1) {
                 validMove = !targetLocation.isEmpty() && targetLocation.getPiece().getColor() ==
                 ChessBoard.BLACK;
+                int siyah = super.getSiyah() + 1;
+                super.setSiyah(siyah);
             } else if (color == ChessBoard.BLACK && rowDistance == -1) {
                 validMove = !targetLocation.isEmpty() && targetLocation.getPiece().getColor() ==
                 ChessBoard.WHITE;
+                int beyaz = super.getBeyaz() + 1;
+                super.setBeyaz(beyaz);
             }
         }
         return validMove;*/
