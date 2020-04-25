@@ -6,7 +6,8 @@ public class Pawn extends Piece{
     }
     @Override
     public boolean canMove(String to) {
-        boolean validMove = false;
+        return true;
+        /*boolean validMove = false;
         Square targetLocation = location.getBoard().getSquareAt(to);
         int rowDistance = targetLocation.getRowDistance(location);
         if (this.location.isAtSameColumn(targetLocation)) {
@@ -40,12 +41,12 @@ public class Pawn extends Piece{
                 ChessBoard.WHITE;
             }
         }
-        return validMove;
+        return validMove;*/
     }
 
     @Override
     public void move(String to) {
-        Square targetLocation = location.getBoard().getSquareAt(to);
+        /*Square targetLocation = location.getBoard().getSquareAt(to);
         //promoteToQueen
         if (targetLocation.isAtLastRow(color)) {
             targetLocation.putNewQueen(color);
@@ -55,10 +56,16 @@ public class Pawn extends Piece{
         location.clear();
         //update current location
         location = targetLocation;
-        location.getBoard().nextPlayer();
+        location.getBoard().nextPlayer();*/
 }
+
     @Override
     public String toString() {
-        return color == ChessBoard.WHITE ? "P" : "p";
+        if(super.getColor() == 0){
+            return "P";
+        }
+        else{
+            return "p";
+        }
     }
 }

@@ -1,5 +1,10 @@
 
 public class Knight extends Piece {
+
+    public Knight(int color, Square location) {
+        super(color,location);
+    }
+
     @Override
     public void move(String destination) {
         // TODO Auto-generated method stub
@@ -11,4 +16,16 @@ public class Knight extends Piece {
         // TODO Auto-generated method stub
         return false;
     }
+
+    @Override
+    public String toString() {
+        if(super.getColor() == 0){
+            return "N";
+        }
+        else{
+            return "n";
+        }
+    }
+
+    
 }
