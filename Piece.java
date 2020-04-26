@@ -2,8 +2,6 @@
 public class Piece {
     private int color;
     private Square location;
-    private static int siyah = 0; 
-    private static int beyaz = 0;
     private String rank;
 
     public Piece(int color, Square s1, String rank) {
@@ -42,22 +40,6 @@ public class Piece {
 
     public void setLocation(Square location) {
         this.location = location;
-    }
-
-    public static int getSiyah() {
-        return siyah;
-    }
-
-    public static void setSiyah(int siyah) {
-        Piece.siyah = siyah;
-    }
-
-    public static int getBeyaz() {
-        return beyaz;
-    }
-
-    public static void setBeyaz(int beyaz) {
-        Piece.beyaz = beyaz;
     }
 
     public String getRank() {

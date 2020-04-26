@@ -1,9 +1,16 @@
 
 public class Rook extends Piece {
-
-    public Rook(int color, String column, int row) {
-        super(color, new Square(column,row));
+    private int color, row;
+    private String column, rank;
+    private Square location;
+    
+    public Rook(int color, Square location, String rank) {
+        super(color, location, rank);
+        this.color = color;
+        this.location = location;
+        this.rank = rank;
     }
+
     @Override
     public void move(String destination) {
         // TODO Auto-generated method stub
@@ -25,6 +32,14 @@ public class Rook extends Piece {
         else{
             return "r";
         }
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     

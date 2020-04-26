@@ -1,8 +1,14 @@
 
 public class King extends Piece {
-
-    public King(int color, String column, int row) {
-        super(color, new Square(column,row));
+    private int color, row;
+    private String column, rank;
+    private Square location;
+    
+    public King(int color, Square location, String rank) {
+        super(color, location, rank);
+        this.color = color;
+        this.location = location;
+        this.rank = rank;
     }
     
     @Override
@@ -25,6 +31,14 @@ public class King extends Piece {
         else{
             return "k";
         }
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     

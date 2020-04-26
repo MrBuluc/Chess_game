@@ -1,10 +1,15 @@
 
 public class Knight extends Piece {
-
-    public Knight(int color, String column, int row) {
-        super(color,new Square(column,row));
+    private int color, row;
+    private String column, rank;
+    private Square location;
+    
+    public Knight(int color, Square location, String rank) {
+        super(color, location, rank);
+        this.color = color;
+        this.location = location;
+        this.rank = rank;
     }
-
     @Override
     public void move(String destination) {
         // TODO Auto-generated method stub
@@ -25,6 +30,14 @@ public class Knight extends Piece {
         else{
             return "n";
         }
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     
