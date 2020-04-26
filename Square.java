@@ -140,6 +140,22 @@ public class Square {
     public void setBoard(ChessBoard board) {
         this.board = board;
     }
+
+    public String getColumn() {
+        return column;
+    }
+
+    public void setColumn(String column) {
+        this.column = column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
     
     
 }

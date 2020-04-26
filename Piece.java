@@ -18,6 +18,10 @@ public class Piece {
            Pawn pawn = (Pawn)this;
            pawn.move(destination);
         }
+        if(this.rank.equals("ROOK")){
+            Rook rook = (Rook)this;
+            rook.move(destination);
+        }
     }
 
     public boolean canMove(String destination){
@@ -54,6 +58,14 @@ public class Piece {
 
     public static void setBeyaz(int beyaz) {
         Piece.beyaz = beyaz;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
     
