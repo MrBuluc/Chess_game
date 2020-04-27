@@ -3,16 +3,16 @@ import java.util.ArrayList;
 public class Square {
     private String column;
     private int row;
-    private boolean empty;
+    private Piece piece;
 
-    public Square(String column, int row, boolean empty) {
+    public Square(String column, int row, Piece piece) {
         this.column = column;
         this.row = row;
-        this.empty = empty;
+        this.piece = piece;
     }
 
     public boolean isEmpty() {
-        return !this.empty;
+        return this.piece == null;
     }
 
     public boolean isAtSameColumn(Square s) {
@@ -23,7 +23,7 @@ public class Square {
     }
 
     public int getRowDistance(Square location) {
-        return this.row - location.getRow();
+        return (this.row - location.getRow());
     }
 
     public boolean isNeighborColumn(Square targetLocation) {
@@ -51,10 +51,7 @@ public class Square {
         } else {
             neighborColumn.add("G");
         }
-        if (neighborColumn.contains(targetLocation.getColumn())) {
-            return true;
-        }
-        return false;
+        return neighborColumn.contains(targetLocation.getColumn());
     }
 
     public boolean isAtLastRow(int color) {
@@ -82,15 +79,17 @@ public class Square {
         this.row = row;
     }
 
-    public void setEmpty(boolean empty) {
-        this.empty = empty;
+    public Piece getPiece() {
+        return piece;
     }
 
-    @Override
-    public String toString() {
-        return "Column: "+ this.column+ " Row: "+ this.row+ " Empty: "+ this.empty;
+    public void setPiece(Piece piece) {
+        this.piece = piece;
     }
 
-	
-
+    /*@Override
+    public boolean equals(Square obj) {
+        return (this.column.equals(obj.getColumn()) && this.row == obj.row && this.piece.equals(
+            obj.getPiece()));
+    }*/
 }

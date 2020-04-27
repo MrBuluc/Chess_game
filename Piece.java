@@ -1,18 +1,17 @@
 
-public class Piece {
+public class Piece{
     private int color;
-    private Square location;
-    private String rank;
+    private String rank, location;
 
-    public Piece(int color, Square s1, String rank) {
+    public Piece(int color, String rank, String location) {
         this.color = color;
-        this.location = s1;
         this.rank = rank;
+        this.location = location;
     }
 
     public void move(String destination, ChessBoard board) {
         if (this.rank.equals("PAWN")) {
-            Pawn pawn = new Pawn(this.color, this.location, this.rank);
+            Pawn pawn = new Pawn(this.color, this.location);
             pawn.move(destination, board);
         }
         if (this.rank.equals("ROOK")) {
@@ -23,7 +22,7 @@ public class Piece {
 
     public boolean canMove(String destination, ChessBoard board) {
         if (this.rank.equals("PAWN")) {
-            Pawn pawn = new Pawn(this.color, this.location, this.rank);
+            Pawn pawn = new Pawn(this.color, this.location);
             return pawn.canMove(destination, board);
         }
         return false;
@@ -37,14 +36,6 @@ public class Piece {
         this.color = color;
     }
 
-    public Square getLocation() {
-        return location;
-    }
-
-    public void setLocation(Square location) {
-        this.location = location;
-    }
-
     public String getRank() {
         return rank;
     }
@@ -53,10 +44,18 @@ public class Piece {
         this.rank = rank;
     }
 
-    @Override
-    public String toString() {
-        return "Color: "+ this.color+ " Square: "+ this.location+ " Rank: "+ this.rank;
+    public String getLocation() {
+        return location;
     }
 
-    
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /*@Override
+    public boolean equals(Piece obj) {
+        return (this.color == obj.getColor() && this.rank.equals(obj.getRank()) && this.location.equals(
+            obj.getLocation()));
+    }*/
+
 }

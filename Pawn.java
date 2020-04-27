@@ -2,38 +2,36 @@
 public class Pawn extends Piece{
     boolean initialLocation = true;
     private int color, row;
-    private String column, rank;
-    private Square location;
+    private String column, locatio;
     boolean attacking = false;
     
-    public Pawn(int color, Square location, String rank) {
-        super(color, location, rank);
+    public Pawn(int color, String locatio) {
+        super(color, "PAWN", locatio);
         this.color = color;
-        this.location = location;
-        this.rank = rank;
+        this.locatio = locatio;
     }
 
     @Override
     public boolean canMove(String to, ChessBoard board) {
         boolean validMove = false;
+        Square location = board.getSquareAt(locatio);
         Square targetLocation = board.getSquareAt(to);
-        if(targetLocation == null){
-            return validMove;
-        }
         int rowDistance = targetLocation.getRowDistance(location);
-        if (this.location.isAtSameColumn(targetLocation)) {
+        if (location.isAtSameColumn(targetLocation)) {
             if (color == 0 && rowDistance > 0 && rowDistance <= 2) {
                 if (rowDistance == 2) {
                     if (initialLocation) {
                         //pawn is moving twice, check two squares in front are empty
-                        Square[] between = board.getSquaresBetween(location, targetLocation,
-                         "P", this.color);
+                        Square[] between = board.getSquaresBetween(location, targetLocation, "P",
+                        this.color);
                         validMove = targetLocation.isEmpty() && between[0].isEmpty();
                         initialLocation = false;
                     }
-                } else {
+                }
+                else {
                     validMove = targetLocation.isEmpty();
-                } return validMove;
+                }
+                return validMove;
             } else if (color == 1 && rowDistance < 0 && rowDistance >= -2) {
                 if (rowDistance == -2) {
                     if (initialLocation) {
@@ -42,19 +40,21 @@ public class Pawn extends Piece{
                          "P", this.color);
                         validMove = targetLocation.isEmpty() && between[0].isEmpty();
                     }
-                } else {
+                }
+                else {
                     validMove = targetLocation.isEmpty();
-                } return validMove;
+                }
+                return validMove;
             } // attacking diagonals
-        } else if (this.location.isNeighborColumn(targetLocation)) {
+        } else if (location.isNeighborColumn(targetLocation)) {
             String col = targetLocation.getColumn();
             int row = targetLocation.getRow();
             String from = col + row;
             int color = board.getPieceAt(from).getColor();
-            if (color == 0 && rowDistance == 1) {
+            if (this.color == 0 && rowDistance == 1) {
                 attacking = !targetLocation.isEmpty() &&  color == 1;
                 validMove = attacking;
-            } else if (color == 1 && rowDistance == -1) {
+            } else if (this.color == 1 && rowDistance == -1) {
                 attacking = !targetLocation.isEmpty() && color == 0;
                 validMove = attacking;
             }
@@ -64,23 +64,23 @@ public class Pawn extends Piece{
 
     @Override
     public void move(String to, ChessBoard board) {
+        Square location = board.getSquareAt(locatio);
         Square targetLocation = board.getSquareAt(to);
-         //clear previous location
-         board.removeList(this.location, this.color);
-         //update current location
-         this.location = targetLocation;
         //promoteToQueen
-        if (targetLocation.isAtLastRow(color)) {
-            board.putNewQueen(color, targetLocation);
+        if (targetLocation.isAtLastRow(this.color)) {
+            board.putNewQueen(this.color, targetLocation);
         }
         else if(attacking) {
-            board.removeList(targetLocation, this.color);
-            board.setPiece(this);
+            board.removeList(targetLocation);
+            board.setPiece(this, targetLocation);
         }
         else{
-            board.setPiece(this);
+            board.setPiece(this, targetLocation);
         }
-       
+        //clear previous location
+        board.removeList(location);
+        //update current location
+        location = targetLocation;
         board.nextPlayer();
 }
 
@@ -117,13 +117,4 @@ public class Pawn extends Piece{
     public void setColumn(String column) {
         this.column = column;
     }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
 }
