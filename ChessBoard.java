@@ -1,11 +1,10 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class ChessBoard {
     final static String[] harf = {"A","B","C","D","E","F","G","H"};
     private boolean flag = true;
-    private Set<Piece> piecesWhite = new HashSet<>();
-    private Set<Piece> piecesBlack = new HashSet<>();
+    private ArrayList<Piece> piecesWhite = new ArrayList<Piece>();
+    private ArrayList<Piece> piecesBlack = new ArrayList<Piece>();
     
     public ChessBoard() {
         piecesBlack.add(new Piece(1, new Square("A", 8, true), "ROOK"));
@@ -32,7 +31,7 @@ public class ChessBoard {
 
         for(String har : harf){
             piecesWhite.add(new Piece(0, new Square(har, 2, true), "PAWN"));
-        }    
+        }
     }
     
 
@@ -41,7 +40,7 @@ public class ChessBoard {
     }
 
     public boolean isGameEnded() {
-        if(piecesWhite.size() == 0 || piecesBlack.size() == 0){
+        if(piecesWhite.isEmpty() || piecesBlack.isEmpty()){
             return true;
         }
         return false;
@@ -88,8 +87,59 @@ public class ChessBoard {
         return square;
     }
 
-    //public Square[] getSquaresBetween(Square location, Square targetLocation){}
+    public Square[] getSquaresBetween(Square location, Square targetLocation, String rank, int color){
+        if(rank.equals("P")){
+            if(color == 0){
+                Square[] squares = new Square[1];
+                String to = location.getColumn() + (location.getRow() + 1);
+                squares[0] = getSquareAt(to);
+                return squares;
+            }
+            else{
+                Square[] squares = new Square[1];
+                String to = location.getColumn() + (location.getRow() - 1);
+                squares[0] = getSquareAt(to);
+                return squares;
+            }
+        }
+        else{
+            Square[] squares = new Square[1];
+            return squares;
+        }
+    }
 
+    public void removeList(Square target, int color){
+        String col = target.getColumn();
+        int row = target.getRow();
+        String from = col + row;
+        if(color == 0){
+            piecesWhite.remove(getPieceAt(from));
+            System.out.println("removeList metodu çalıştı");
+        }
+        else{
+            piecesBlack.remove(getPieceAt(from));
+        }
+    }
+
+    public void putNewQueen(int color, Square target) {
+        if(color == 0){
+            piecesWhite.add(new Piece(color, target, "QUEEN"));
+        }
+        else{
+            piecesBlack.add(new Piece(color, target, "QUEEN"));
+        }
+	}
+
+    public void setPiece(Piece piec) {
+        if(piec.getColor() == 0){
+            piecesWhite.add(new Piece(piec.getColor(), piec.getLocation(), piec.getRank()));
+            System.out.println("setPiece çalıştı");
+        }
+        else{
+            piecesBlack.add(new Piece(piec.getColor(), piec.getLocation(), piec.getRank()));
+        }
+    }
+    
     @Override
       public String toString() {
         String brdStr = "";
@@ -138,4 +188,8 @@ public class ChessBoard {
         }
         return brdStr;
       }
+
+
+	
+
 }

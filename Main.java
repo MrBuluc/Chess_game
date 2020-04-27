@@ -17,8 +17,8 @@ public class Main {
                 do {
                     System.out.print("Enter the new location of the piece:");
                     to = reader.next();
-                }while(!piece.canMove(to));
-            piece.move(to);
+                }while(!piece.canMove(to, board));
+            piece.move(to, board);
             System.out.println(board);
         } reader.close();
     }

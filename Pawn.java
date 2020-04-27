@@ -4,6 +4,7 @@ public class Pawn extends Piece{
     private int color, row;
     private String column, rank;
     private Square location;
+    boolean attacking = false;
     
     public Pawn(int color, Square location, String rank) {
         super(color, location, rank);
@@ -13,11 +14,11 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public boolean canMove(String to) {
+    public boolean canMove(String to, ChessBoard board) {
         boolean validMove = false;
-        Square targetLocation = location.getBoard().getSquareAt(to);
+        Square targetLocation = board.getSquareAt(to);
         if(targetLocation == null){
-            return false;
+            return validMove;
         }
         int rowDistance = targetLocation.getRowDistance(location);
         if (this.location.isAtSameColumn(targetLocation)) {
@@ -25,52 +26,62 @@ public class Pawn extends Piece{
                 if (rowDistance == 2) {
                     if (initialLocation) {
                         //pawn is moving twice, check two squares in front are empty
-                        Square[] between = location.getBoard().getSquaresBetween(location, targetLocation);
+                        Square[] between = board.getSquaresBetween(location, targetLocation,
+                         "P", this.color);
+                        validMove = targetLocation.isEmpty() && between[0].isEmpty();
+                        initialLocation = false;
+                    }
+                } else {
+                    validMove = targetLocation.isEmpty();
+                } return validMove;
+            } else if (color == 1 && rowDistance < 0 && rowDistance >= -2) {
+                if (rowDistance == -2) {
+                    if (initialLocation) {
+                        //pawn is moving twice, check two squares in front are empty
+                        Square[] between = board.getSquaresBetween(location, targetLocation,
+                         "P", this.color);
                         validMove = targetLocation.isEmpty() && between[0].isEmpty();
                     }
                 } else {
                     validMove = targetLocation.isEmpty();
                 } return validMove;
-            } else if (color == ChessBoard.BLACK && rowDistance < 0 && rowDistance >= -2) {
-                if (rowDistance == -2) {
-                    if (initialLocation) {
-                        //pawn is moving twice, check two squares in front are empty
-                        Square[] between = location.getBoard().getSquaresBetween(location, targetLocation);
-                        validMove = targetLocation.isEmpty() && between[0].isEmpty();
-                    }
-                } else {
-                    validMove = targetLocation.isEmpty();
-                }
             } // attacking diagonals
         } else if (this.location.isNeighborColumn(targetLocation)) {
-            if (color == ChessBoard.WHITE && rowDistance == 1) {
-                validMove = !targetLocation.isEmpty() && targetLocation.getPiece().getColor() ==
-                ChessBoard.BLACK;
-                int siyah = super.getSiyah() + 1;
-                super.setSiyah(siyah);
-            } else if (color == ChessBoard.BLACK && rowDistance == -1) {
-                validMove = !targetLocation.isEmpty() && targetLocation.getPiece().getColor() ==
-                ChessBoard.WHITE;
-                int beyaz = super.getBeyaz() + 1;
-                super.setBeyaz(beyaz);
+            String col = targetLocation.getColumn();
+            int row = targetLocation.getRow();
+            String from = col + row;
+            int color = board.getPieceAt(from).getColor();
+            if (color == 0 && rowDistance == 1) {
+                attacking = !targetLocation.isEmpty() &&  color == 1;
+                validMove = attacking;
+            } else if (color == 1 && rowDistance == -1) {
+                attacking = !targetLocation.isEmpty() && color == 0;
+                validMove = attacking;
             }
         }
         return validMove;
     }
 
     @Override
-    public void move(String to) {
-        Square targetLocation = location.getBoard().getSquareAt(to);
+    public void move(String to, ChessBoard board) {
+        Square targetLocation = board.getSquareAt(to);
+         //clear previous location
+         board.removeList(this.location, this.color);
+         //update current location
+         this.location = targetLocation;
         //promoteToQueen
         if (targetLocation.isAtLastRow(color)) {
-            targetLocation.putNewQueen(color);
-        } else {
-            targetLocation.setPiece(this);
-        } //clear previous location
-        location.clear();
-        //update current location
-        location = targetLocation;
-        location.getBoard().nextPlayer();
+            board.putNewQueen(color, targetLocation);
+        }
+        else if(attacking) {
+            board.removeList(targetLocation, this.color);
+            board.setPiece(this);
+        }
+        else{
+            board.setPiece(this);
+        }
+       
+        board.nextPlayer();
 }
 
     @Override
@@ -91,5 +102,28 @@ public class Pawn extends Piece{
         this.color = color;
     }
 
-    
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public String getColumn() {
+        return column;
+    }
+
+    public void setColumn(String column) {
+        this.column = column;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
 }

@@ -9,21 +9,24 @@ public class Piece {
         this.location = s1;
         this.rank = rank;
     }
-    
 
-    public void move(String destination){
-        if(this.rank.equals("Pawn")){
-           Pawn pawn = (Pawn)this;
-           pawn.move(destination);
+    public void move(String destination, ChessBoard board) {
+        if (this.rank.equals("PAWN")) {
+            Pawn pawn = new Pawn(this.color, this.location, this.rank);
+            pawn.move(destination, board);
         }
-        if(this.rank.equals("ROOK")){
-            Rook rook = (Rook)this;
-            rook.move(destination);
+        if (this.rank.equals("ROOK")) {
+            Rook rook = (Rook) this;
+            rook.move(destination, board);
         }
     }
 
-    public boolean canMove(String destination){
-        return true;
+    public boolean canMove(String destination, ChessBoard board) {
+        if (this.rank.equals("PAWN")) {
+            Pawn pawn = new Pawn(this.color, this.location, this.rank);
+            return pawn.canMove(destination, board);
+        }
+        return false;
     }
 
     public int getColor() {
@@ -48,6 +51,11 @@ public class Piece {
 
     public void setRank(String rank) {
         this.rank = rank;
+    }
+
+    @Override
+    public String toString() {
+        return "Color: "+ this.color+ " Square: "+ this.location+ " Rank: "+ this.rank;
     }
 
     
