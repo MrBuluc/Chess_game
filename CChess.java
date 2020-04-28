@@ -3,14 +3,9 @@ public class CChess {
     public static void main(String[] args) {
         //CChessBoard brd = new CChessBoard();
         //System.out.println(brd);
-        String a = "d2";
-        String b = a.toUpperCase();
-        System.out.println(b);
-        b += " ";
-        String c = b.substring(0, 1);
-        int d = Integer.parseInt(b.substring(1, 2));
-        System.out.println(c);
-        System.out.println(d);
+       int a = "A".hashCode();
+       int b = "B".hashCode();
+        System.out.println(a < b);
       }
     }
     class CChessBoard {

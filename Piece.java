@@ -15,7 +15,7 @@ public class Piece{
             pawn.move(destination, board);
         }
         if (this.rank.equals("ROOK")) {
-            Rook rook = (Rook) this;
+            Rook rook = new Rook(this.color, this.location);
             rook.move(destination, board);
         }
     }
@@ -24,6 +24,10 @@ public class Piece{
         if (this.rank.equals("PAWN")) {
             Pawn pawn = new Pawn(this.color, this.location);
             return pawn.canMove(destination, board);
+        }
+        else if(this.rank.equals("ROOK")){
+            Rook rook = new Rook(this.color, this.location);
+            return rook.canMove(destination, board);
         }
         return false;
     }
@@ -51,11 +55,5 @@ public class Piece{
     public void setLocation(String location) {
         this.location = location;
     }
-
-    /*@Override
-    public boolean equals(Piece obj) {
-        return (this.color == obj.getColor() && this.rank.equals(obj.getRank()) && this.location.equals(
-            obj.getLocation()));
-    }*/
 
 }

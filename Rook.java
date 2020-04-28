@@ -1,78 +1,72 @@
 
 public class Rook extends Piece {
-    private int color, row;
-    private String column, rank;
-    private Square location;
-    
-    public Rook(int color, Square location, String rank) {
-        super(color, location, rank);
+    private int color;
+    private String locatio;
+    private boolean attacking = false;
+
+    public Rook(int color, String locatio) {
+        super(color, "ROOK", locatio);
         this.color = color;
-        this.location = location;
-        this.rank = rank;
+        this.locatio = locatio;
     }
 
     @Override
     public void move(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
+        Square location = board.getSquareAt(locatio);
+        Square target = board.getSquareAt(destination);
+        if(attacking){
+            board.removeList(target);
+            board.setPiece(this, target);
+        }
+        else{
+            board.setPiece(this, target);
+        }
+        //clear previous location
+        board.removeList(location);
+        //update current location
+        location = target;
+        board.nextPlayer();
 
     }
 
     @Override
     public boolean canMove(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
-        return false;
+    boolean validMove = false;
+        Square location = board.getSquareAt(this.locatio);
+        Square targetLocation = board.getSquareAt(destination);
+        if(location.isAtSameColumn(targetLocation) || location.isAtSameRow(targetLocation)){
+            //rook is moving, check all squares in front, behind, right or left are empty
+            Square[] between = board.getSquaresBetween(location, targetLocation, "R", this.color);
+            boolean zero = between[0] != null ? between[0].isEmpty() : true;
+            boolean one = between[1] != null ? between[1].isEmpty() : true;
+            boolean two = between[2] != null ? between[2].isEmpty() : true;
+            boolean tree = between[3] != null ? between[3].isEmpty() : true;
+            boolean four = between[4] != null ? between[4].isEmpty() : true;
+            boolean five = between[5] != null ? between[5].isEmpty() : true;
+            boolean six = between[6] != null ? between[6].isEmpty() : true;
+            validMove = targetLocation.isEmpty() && zero && one && two && tree && four && five && six;
+            return validMove;
+        }// attacking
+        else if(!targetLocation.isEmpty()){
+            int color = targetLocation.getPiece().getColor();
+            if(this.color != color){
+                attacking = true;
+                validMove = attacking;
+            }
+            else{
+                return validMove;
+            }
+        }
+        return validMove;
     }
 
-    @Override
-    public String toString() {
-        
-        if(super.getColor() == 0){
-            return "R";
-        }
-        else{
-            return "r";
-        }
-    }
-
-    public int getColor() {
+   /*  public int getColor() {
         return color;
     }
 
     public void setColor(int color) {
         this.color = color;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public void setColumn(String column) {
-        this.column = column;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public Square getLocation() {
-        return location;
-    }
-
-    public void setLocation(Square location) {
-        this.location = location;
-    }
+    } */
 
     
 }

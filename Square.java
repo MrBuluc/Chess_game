@@ -22,6 +22,15 @@ public class Square {
         return false;
     }
 
+    public boolean isAtSameRow(Square targetLocation){
+        if(this.row == targetLocation.row){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
     public int getRowDistance(Square location) {
         return (this.row - location.getRow());
     }
@@ -63,6 +72,29 @@ public class Square {
         return false;
     }
 
+    public int intColumn(){
+        if(this.column.equals("A")){
+            return 1;
+        }if(this.column.equals("B")){
+            return 2;
+        }if(this.column.equals("C")){
+            return 3;
+        }if(this.column.equals("D")){
+            return 4;
+        }if(this.column.equals("E")){
+            return 5;
+        }if(this.column.equals("F")){
+            return 6;
+        }if(this.column.equals("G")){
+            return 7;
+        }if(this.column.equals("H")){
+            return 8;
+        }
+        else{
+            return 0;
+        }
+    }
+
     public String getColumn() {
         return column;
     }
@@ -87,9 +119,4 @@ public class Square {
         this.piece = piece;
     }
 
-    /*@Override
-    public boolean equals(Square obj) {
-        return (this.column.equals(obj.getColumn()) && this.row == obj.row && this.piece.equals(
-            obj.getPiece()));
-    }*/
 }
