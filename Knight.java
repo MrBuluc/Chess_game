@@ -9,10 +9,23 @@ public class Knight extends Piece {
         this.color = color;
         this.locatio = locatio;
     }
+
     @Override
     public void move(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
-
+        Square location = board.getSquareAt(locatio);
+        Square target = board.getSquareAt(destination);
+        if(attacking){
+            board.removeList(target);
+            board.setPiece(this, target);
+        }
+        else{
+            board.setPiece(this, target);
+        }
+        //clear previous location
+        board.removeList(location);
+        //update current location
+        location = target;
+        board.nextPlayer();
     }
 
     @Override
@@ -30,7 +43,10 @@ public class Knight extends Piece {
                 if(this.color != color){
                     attacking = true;
                 }
-                return false;
+                else{
+                    return false;
+                }
+                return true;
             }
             return true;
         }
@@ -42,7 +58,10 @@ public class Knight extends Piece {
                 if(this.color != color){
                     attacking = true;
                 }
-                return false;
+                else{
+                    return false;
+                }
+                return true;
             }
             return true;
         }

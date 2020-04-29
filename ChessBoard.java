@@ -6,10 +6,10 @@ public class ChessBoard {
     public ChessBoard() {
         squares[0][0] = new Square("A", 8, new Piece(1, "ROOK", "A8"));
         squares[1][0] = new Square("B", 8, new Piece(1, "KNIGHT", "B8"));
-        squares[2][0] = new Square("C", 8, null);
+        squares[2][0] = new Square("C", 8, new Piece(1, "BISHOP", "C8"));
         squares[3][0] = new Square("D", 8, null);
         squares[4][0] = new Square("E", 8, null);
-        squares[5][0] = new Square("F", 8, null);
+        squares[5][0] = new Square("F", 8, new Piece(1, "BISHOP", "F8"));
         squares[6][0] = new Square("G", 8, new Piece(1, "KNIGHT", "G8"));
         squares[7][0] = new Square("H", 8, new Piece(1, "ROOK", "H8"));
 
@@ -69,10 +69,10 @@ public class ChessBoard {
 
         squares[0][7] = new Square("A", 1, new Piece(0, "ROOK", "A1"));
         squares[1][7] = new Square("B", 1, new Piece(0, "KNIGHT", "B1"));
-        squares[2][7] = new Square("C", 1, null);
+        squares[2][7] = new Square("C", 1, new Piece(0, "BISHOP", "C1"));
         squares[3][7] = new Square("D", 1, null);
         squares[4][7] = new Square("E", 1, null);
-        squares[5][7] = new Square("F", 1, null);
+        squares[5][7] = new Square("F", 1, new Piece(0, "BISHOP", "F1"));
         squares[6][7] = new Square("G", 1, new Piece(0, "KNIGHT", "G1"));
         squares[7][7] = new Square("H", 1, new Piece(0, "ROOK", "H1"));
     }
@@ -208,6 +208,50 @@ public class ChessBoard {
             }return squares;
             
         }
+        else if(rank.equals("B")){
+            Square[] squares = new Square[7];
+            int lCol = location.intColumn();
+            int lRow = location.getRow();
+            int tCol = targetLocation.intColumn();
+            int tRow = targetLocation.getRow();
+            int rDif = Math.abs(tRow - lRow);
+            if(tCol > lCol && tRow > lRow){
+                for(int i = 0; i < rDif; i++){
+                    lRow++;
+                    lCol++;
+                    String col = stringColumn(lCol);
+                    String to = col + lRow;
+                    squares[i] = getSquareAt(to);
+                }
+            }
+            else if(tCol < lCol && tRow > lRow){
+                for(int i = 0; i < rDif; i++){
+                    lRow++;
+                    lCol--;
+                    String col = stringColumn(lCol);
+                    String to = col + lRow;
+                    squares[i] = getSquareAt(to);
+                }
+            }
+            else if(tCol < lCol && tRow < lRow){
+                for(int i = 0; i < rDif; i++){
+                    lRow--;
+                    lCol--;
+                    String col = stringColumn(lCol);
+                    String to = col + lRow;
+                    squares[i] = getSquareAt(to);
+                }
+            }
+            else{
+                for(int i = 0; i < rDif; i++){
+                    lRow--;
+                    lCol++;
+                    String col = stringColumn(lCol);
+                    String to = col + lRow;
+                    squares[i] = getSquareAt(to);
+                }
+            }return squares;
+        }
         else{
             Square[] squares = new Square[1];
             return squares;
@@ -237,28 +281,7 @@ public class ChessBoard {
         }
     }
 
-    /* public int drctnDetector(Square location, Square target){
-        if(location.isAtSameColumn(target)){
-            int locationRow = location.getRow();
-            int targetRow = target.getRow();
-            if(targetRow > locationRow){
-                return 1;
-            }
-            else{
-                return -1;
-            }
-        }
-        else{
-            int locationColumn = location.getColumn().hashCode();
-            int targetColumn = target.getColumn().hashCode();
-            if(targetColumn > locationColumn){
-                return 2;
-            }
-            else{
-                return -2;
-            }
-        }
-    } */
+
     
     public void removeList(Square target){
         String col = target.getColumn();

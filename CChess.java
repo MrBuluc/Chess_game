@@ -1,11 +1,13 @@
 
 public class CChess {
     public static void main(String[] args) {
-        //CChessBoard brd = new CChessBoard();
-        //System.out.println(brd);
-       int a = "A".hashCode();
-       int b = "B".hashCode();
-        System.out.println(a < b);
+      String to = "d2";
+        String toUpper = to.toUpperCase();
+        toUpper += " ";
+        String col = toUpper.substring(0, 1);
+        int row = Integer.parseInt(toUpper.substring(1, 2));
+        System.out.println(col);
+        System.out.println(row);
       }
     }
     class CChessBoard {

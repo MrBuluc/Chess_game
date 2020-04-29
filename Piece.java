@@ -14,9 +14,17 @@ public class Piece{
             Pawn pawn = new Pawn(this.color, this.location);
             pawn.move(destination, board);
         }
-        if (this.rank.equals("ROOK")) {
+        else if (this.rank.equals("ROOK")) {
             Rook rook = new Rook(this.color, this.location);
             rook.move(destination, board);
+        }
+        else if (this.rank.equals("KNIGHT")) {
+            Knight knight = new Knight(this.color, this.location);
+            knight.move(destination, board);
+        }
+        else if (this.rank.equals("BISHOP")) {
+            Bishop bishop = new Bishop(this.color, this.location);
+            bishop.move(destination, board);
         }
     }
 
@@ -32,6 +40,10 @@ public class Piece{
         else if(this.rank.equals("KNIGHT")){
             Knight knight = new Knight(this.color, this.location);
             return knight.canMove(destination, board);
+        }
+        else if(this.rank.equals("BISHOP")){
+            Bishop bishop = new Bishop(this.color, this.location);
+            return bishop.canMove(destination, board);
         }
         return false;
     }
