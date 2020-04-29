@@ -5,12 +5,12 @@ public class ChessBoard {
 
     public ChessBoard() {
         squares[0][0] = new Square("A", 8, new Piece(1, "ROOK", "A8"));
-        squares[1][0] = new Square("B", 8, null);
+        squares[1][0] = new Square("B", 8, new Piece(1, "KNIGHT", "B8"));
         squares[2][0] = new Square("C", 8, null);
         squares[3][0] = new Square("D", 8, null);
         squares[4][0] = new Square("E", 8, null);
         squares[5][0] = new Square("F", 8, null);
-        squares[6][0] = new Square("G", 8, null);
+        squares[6][0] = new Square("G", 8, new Piece(1, "KNIGHT", "G8"));
         squares[7][0] = new Square("H", 8, new Piece(1, "ROOK", "H8"));
 
         squares[0][1] = new Square("A", 7, new Piece(1, "PAWN", "A7"));
@@ -68,12 +68,12 @@ public class ChessBoard {
         squares[7][6] = new Square("H", 2, new Piece(0, "PAWN", "H2"));
 
         squares[0][7] = new Square("A", 1, new Piece(0, "ROOK", "A1"));
-        squares[1][7] = new Square("B", 1, null);
+        squares[1][7] = new Square("B", 1, new Piece(0, "KNIGHT", "B1"));
         squares[2][7] = new Square("C", 1, null);
         squares[3][7] = new Square("D", 1, null);
         squares[4][7] = new Square("E", 1, null);
         squares[5][7] = new Square("F", 1, null);
-        squares[6][7] = new Square("G", 1, null);
+        squares[6][7] = new Square("G", 1, new Piece(0, "KNIGHT", "G1"));
         squares[7][7] = new Square("H", 1, new Piece(0, "ROOK", "H1"));
     }
 
@@ -237,7 +237,7 @@ public class ChessBoard {
         }
     }
 
-    public int drctnDetector(Square location, Square target){
+    /* public int drctnDetector(Square location, Square target){
         if(location.isAtSameColumn(target)){
             int locationRow = location.getRow();
             int targetRow = target.getRow();
@@ -258,7 +258,7 @@ public class ChessBoard {
                 return -2;
             }
         }
-    }
+    } */
     
     public void removeList(Square target){
         String col = target.getColumn();
@@ -321,7 +321,7 @@ public class ChessBoard {
                     if (p.getRank().equals("ROOK")) {
                         brdStr += p.getColor() == 0 ? " | R" : " | r";
                     } else if (p.getRank().equals("KNIGHT")) {
-                        brdStr += p.getColor() == 0 ? " | K" : " | k";
+                        brdStr += p.getColor() == 0 ? " | N" : " | n";
                     } else if (p.getRank().equals("BISHOP")) {
                         brdStr += p.getColor() == 0 ? " | B" : " | b";
                     } else if (p.getRank().equals("QUEEN")) {

@@ -29,6 +29,10 @@ public class Piece{
             Rook rook = new Rook(this.color, this.location);
             return rook.canMove(destination, board);
         }
+        else if(this.rank.equals("KNIGHT")){
+            Knight knight = new Knight(this.color, this.location);
+            return knight.canMove(destination, board);
+        }
         return false;
     }
 

@@ -50,9 +50,6 @@ public class Pawn extends Piece{
                 return validMove;
             } // attacking diagonals
         } else if (location.isNeighborColumn(targetLocation)) {
-            /* String col = targetLocation.getColumn();
-            int row = targetLocation.getRow();
-            String from = col + row; */
             int color = board.getPieceAt(to).getColor();
             if (this.color == 0 && rowDistance == 1) {
                 attacking = !targetLocation.isEmpty() &&  color == 1;

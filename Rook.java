@@ -31,7 +31,7 @@ public class Rook extends Piece {
 
     @Override
     public boolean canMove(String destination, ChessBoard board) {
-    boolean validMove = false;
+        boolean validMove = false;
         Square location = board.getSquareAt(this.locatio);
         Square targetLocation = board.getSquareAt(destination);
         if(location.isAtSameColumn(targetLocation) || location.isAtSameRow(targetLocation)){
@@ -44,29 +44,19 @@ public class Rook extends Piece {
             boolean four = between[4] != null ? between[4].isEmpty() : true;
             boolean five = between[5] != null ? between[5].isEmpty() : true;
             boolean six = between[6] != null ? between[6].isEmpty() : true;
-            validMove = targetLocation.isEmpty() && zero && one && two && tree && four && five && six;
-            return validMove;
-        }// attacking
-        else if(!targetLocation.isEmpty()){
-            int color = targetLocation.getPiece().getColor();
-            if(this.color != color){
-                attacking = true;
-                validMove = attacking;
-            }
-            else{
-                return validMove;
+            validMove = zero && one && two && tree && four && five && six;
+            // attacking
+            if(!targetLocation.isEmpty()){
+                int color = targetLocation.getPiece().getColor();
+                if(this.color != color){
+                    attacking = !validMove;
+                }
+                else{
+                    return validMove;
+                }
             }
         }
-        return validMove;
+        return attacking ? attacking : validMove;
     }
-
-   /*  public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    } */
-
     
 }

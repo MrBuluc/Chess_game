@@ -1,14 +1,13 @@
 
 public class Knight extends Piece {
-    private int color, row;
-    private String column, rank;
-    private Square location;
+    private int color;
+    private String locatio;
+    private boolean attacking = false;
     
-    public Knight(int color, Square location, String rank) {
-        super(color, location, rank);
+    public Knight(int color, String locatio) {
+        super(color, "KNIGHT", locatio);
         this.color = color;
-        this.location = location;
-        this.rank = rank;
+        this.locatio = locatio;
     }
     @Override
     public void move(String destination, ChessBoard board) {
@@ -18,59 +17,37 @@ public class Knight extends Piece {
 
     @Override
     public boolean canMove(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
+        Square location = board.getSquareAt(this.locatio);
+        Square targetLocation = board.getSquareAt(destination);
+        int intLcol = location.intColumn();
+        int lRow = location.getRow();
+        int intTcol = targetLocation.intColumn();
+        int tRow = targetLocation.getRow();
+        if((intLcol + 1 == intTcol || intLcol - 1 == intTcol) && (lRow + 2 == tRow || lRow - 2 == tRow)){
+            // attacking
+            if(!targetLocation.isEmpty()){
+                int color = targetLocation.getPiece().getColor();
+                if(this.color != color){
+                    attacking = true;
+                }
+                return false;
+            }
+            return true;
+        }
+        else if((intLcol + 2 == intTcol || intLcol - 2 == intTcol) && (lRow + 1 == tRow || lRow - 1 == 
+        tRow)){
+            // attacking
+            if(!targetLocation.isEmpty()){
+                int color = targetLocation.getPiece().getColor();
+                if(this.color != color){
+                    attacking = true;
+                }
+                return false;
+            }
+            return true;
+        }
         return false;
+        
     }
 
-    @Override
-    public String toString() {
-        if(super.getColor() == 0){
-            return "N";
-        }
-        else{
-            return "n";
-        }
-    }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public void setColumn(String column) {
-        this.column = column;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public Square getLocation() {
-        return location;
-    }
-
-    public void setLocation(Square location) {
-        this.location = location;
-    }
-
-    
 }
