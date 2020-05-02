@@ -107,7 +107,7 @@ public class ChessBoard {
     }
      
 
-    public Piece d1getPieceAt(String from) {
+    public Piece getPieceAt(String from) {
         String fromUpper = from.toUpperCase();
         fromUpper += " ";
         String col = fromUpper.substring(0, 1);

@@ -12,7 +12,20 @@ public class King extends Piece {
     
     @Override
     public void move(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
+        Square location = board.getSquareAt(locatio);
+        Square target = board.getSquareAt(destination);
+        if(attacking){
+            board.removeList(target);
+            board.setPiece(this, target);
+        }
+        else{
+            board.setPiece(this, target);
+        }
+        //clear previous location
+        board.removeList(location);
+        //update current location
+        location = target;
+        board.nextPlayer();
 
     }
 
@@ -42,7 +55,10 @@ public class King extends Piece {
             }
             return attacking ? attacking : validMove;
         }
-        else if(colDif == rowDif){
+        else if((colDif == rowDif) && ((((lRow + 1) == tRow) && ((intLcol + 1) == intTcol)) || 
+        (((lRow - 1) == tRow) && ((intLcol + 1) == intTcol)) || 
+        (((lRow - 1) == tRow) && ((intLcol - 1) == intTcol)) ||
+        (((lRow + 1) == tRow) && ((intLcol - 1) == intTcol)))){
             //King is moving, check all squares diagonals are empty
             validMove = targetLocation.isEmpty();
             if(!targetLocation.isEmpty()){
@@ -56,5 +72,6 @@ public class King extends Piece {
             }
             return attacking ? attacking : validMove;
         }
+        return validMove;
     }
 }
