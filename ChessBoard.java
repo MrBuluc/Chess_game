@@ -253,8 +253,8 @@ public class ChessBoard {
             }return squares;
         }
         else{
-            Square[] squares = new Square[1];
-            return squares;
+            //Square[] squares = new Square[1];
+            return null;
         }
     }
 
