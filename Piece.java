@@ -26,6 +26,14 @@ public class Piece{
             Bishop bishop = new Bishop(this.color, this.location);
             bishop.move(destination, board);
         }
+        else if (this.rank.equals("QUEEN")) {
+            Queen queen = new Queen(this.color, this.location);
+            queen.move(destination, board);
+        }
+        else if (this.rank.equals("KING")) {
+            King king = new King(this.color, this.location);
+            king.move(destination, board);
+        }
     }
 
     public boolean canMove(String destination, ChessBoard board) {
@@ -45,7 +53,14 @@ public class Piece{
             Bishop bishop = new Bishop(this.color, this.location);
             return bishop.canMove(destination, board);
         }
-        return false;
+        else if(this.rank.equals("QUEEN")){
+            Queen queen = new Queen(this.color, this.location);
+            return queen.canMove(destination, board);
+        }
+        else{
+            King king = new King(this.color,this.location);
+            return king.canMove(destination, board);
+        }
     }
 
     public int getColor() {

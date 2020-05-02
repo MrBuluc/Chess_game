@@ -7,8 +7,8 @@ public class ChessBoard {
         squares[0][0] = new Square("A", 8, new Piece(1, "ROOK", "A8"));
         squares[1][0] = new Square("B", 8, new Piece(1, "KNIGHT", "B8"));
         squares[2][0] = new Square("C", 8, new Piece(1, "BISHOP", "C8"));
-        squares[3][0] = new Square("D", 8, null);
-        squares[4][0] = new Square("E", 8, null);
+        squares[3][0] = new Square("D", 8, new Piece(1, "QUEEN", "D8"));
+        squares[4][0] = new Square("E", 8, new Piece(1, "KING", "E8"));
         squares[5][0] = new Square("F", 8, new Piece(1, "BISHOP", "F8"));
         squares[6][0] = new Square("G", 8, new Piece(1, "KNIGHT", "G8"));
         squares[7][0] = new Square("H", 8, new Piece(1, "ROOK", "H8"));
@@ -70,8 +70,8 @@ public class ChessBoard {
         squares[0][7] = new Square("A", 1, new Piece(0, "ROOK", "A1"));
         squares[1][7] = new Square("B", 1, new Piece(0, "KNIGHT", "B1"));
         squares[2][7] = new Square("C", 1, new Piece(0, "BISHOP", "C1"));
-        squares[3][7] = new Square("D", 1, null);
-        squares[4][7] = new Square("E", 1, null);
+        squares[3][7] = new Square("D", 1, new Piece(0, "QUEEN", "D1"));
+        squares[4][7] = new Square("E", 1, new Piece(0, "KING", "E1"));
         squares[5][7] = new Square("F", 1, new Piece(0, "BISHOP", "F1"));
         squares[6][7] = new Square("G", 1, new Piece(0, "KNIGHT", "G1"));
         squares[7][7] = new Square("H", 1, new Piece(0, "ROOK", "H1"));
@@ -107,7 +107,7 @@ public class ChessBoard {
     }
      
 
-    public Piece getPieceAt(String from) {
+    public Piece d1getPieceAt(String from) {
         String fromUpper = from.toUpperCase();
         fromUpper += " ";
         String col = fromUpper.substring(0, 1);

@@ -1,14 +1,13 @@
 
 public class King extends Piece {
-    private int color, row;
-    private String column, rank;
-    private Square location;
-    
-    public King(int color, Square location, String rank) {
-        super(color, location, rank);
+    private int color;
+    private String locatio;
+    private boolean attacking = false;
+
+    public King(int color, String locatio) {
+        super(color, "KING", locatio);
         this.color = color;
-        this.location = location;
-        this.rank = rank;
+        this.locatio = locatio;
     }
     
     @Override
@@ -19,60 +18,43 @@ public class King extends Piece {
 
     @Override
     public boolean canMove(String destination, ChessBoard board) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        if(super.getColor() == 0){
-            return "K";
+        boolean validMove = false;
+        Square location = board.getSquareAt(this.locatio);
+        Square targetLocation = board.getSquareAt(destination);
+        int intLcol = location.intColumn();
+        int lRow = location.getRow();
+        int intTcol = targetLocation.intColumn();
+        int tRow = targetLocation.getRow();
+        int colDif = Math.abs(intLcol - intTcol);
+        int rowDif = Math.abs(lRow - tRow);
+        if((location.isAtSameColumn(targetLocation) || location.isAtSameRow(targetLocation)) && 
+        ((lRow + 1) == tRow || (intLcol + 1) == intTcol || (lRow - 1) == tRow || (intLcol - 1) == intTcol)){
+            //King is moving, check all squares in front, behind, right or left are empty
+            validMove = targetLocation.isEmpty();
+            if(!targetLocation.isEmpty()){
+                int color = targetLocation.getPiece().getColor();
+                if(this.color != color){
+                    attacking = !validMove;
+                }
+                else{
+                    return validMove;
+                }
+            }
+            return attacking ? attacking : validMove;
         }
-        else{
-            return "k";
+        else if(colDif == rowDif){
+            //King is moving, check all squares diagonals are empty
+            validMove = targetLocation.isEmpty();
+            if(!targetLocation.isEmpty()){
+                int color = targetLocation.getPiece().getColor();
+                if(this.color != color){
+                    attacking = !validMove;
+                }
+                else{
+                    return validMove;
+                }
+            }
+            return attacking ? attacking : validMove;
         }
     }
-
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public void setColumn(String column) {
-        this.column = column;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public Square getLocation() {
-        return location;
-    }
-
-    public void setLocation(Square location) {
-        this.location = location;
-    }
-
-    
-
 }
