@@ -5,7 +5,7 @@ public class King extends Piece {
     private boolean attacking = false;
 
     public King(int color, String locatio) {
-        super(color, "KING", locatio);
+        super(color, locatio);
         this.color = color;
         this.locatio = locatio;
     }

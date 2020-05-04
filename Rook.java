@@ -5,7 +5,7 @@ public class Rook extends Piece {
     private boolean attacking = false;
 
     public Rook(int color, String locatio) {
-        super(color, "ROOK", locatio);
+        super(color, locatio);
         this.color = color;
         this.locatio = locatio;
     }

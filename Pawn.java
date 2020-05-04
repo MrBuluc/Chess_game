@@ -6,7 +6,7 @@ public class Pawn extends Piece{
     private boolean attacking = false;
     
     public Pawn(int color, String locatio) {
-        super(color, "PAWN", locatio);
+        super(color, locatio);
         this.color = color;
         this.locatio = locatio;
     }
@@ -82,5 +82,21 @@ public class Pawn extends Piece{
         //update current location
         location = targetLocation;
         board.nextPlayer();
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public String getLocatio() {
+        return locatio;
+    }
+
+    public void setLocatio(String locatio) {
+        this.locatio = locatio;
     }
 }

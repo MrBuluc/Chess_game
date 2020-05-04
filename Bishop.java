@@ -5,7 +5,7 @@ public class Bishop extends Piece {
     private boolean attacking = false;
     
     public Bishop(int color, String locatio) {
-        super(color, "BISHOP", locatio);
+        super(color, locatio);
         this.color = color;
         this.locatio = locatio;
     }

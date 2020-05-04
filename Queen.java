@@ -6,7 +6,7 @@ public class Queen extends Piece {
     
     
     public Queen(int color, String locatio) {
-        super(color, "QUEEN", locatio);
+        super(color, locatio);
         this.color = color;
         this.locatio = locatio;
     }

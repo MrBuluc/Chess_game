@@ -4,23 +4,23 @@ public class ChessBoard {
     private Square[][] squares = new Square[8][8];
 
     public ChessBoard() {
-        squares[0][0] = new Square("A", 8, new Piece(1, "ROOK", "A8"));
-        squares[1][0] = new Square("B", 8, new Piece(1, "KNIGHT", "B8"));
-        squares[2][0] = new Square("C", 8, new Piece(1, "BISHOP", "C8"));
-        squares[3][0] = new Square("D", 8, new Piece(1, "QUEEN", "D8"));
-        squares[4][0] = new Square("E", 8, new Piece(1, "KING", "E8"));
-        squares[5][0] = new Square("F", 8, new Piece(1, "BISHOP", "F8"));
-        squares[6][0] = new Square("G", 8, new Piece(1, "KNIGHT", "G8"));
-        squares[7][0] = new Square("H", 8, new Piece(1, "ROOK", "H8"));
+        squares[0][0] = new Square("A", 8, new Rook(1, "A8"));
+        squares[1][0] = new Square("B", 8, new Knight(1, "B8"));
+        squares[2][0] = new Square("C", 8, new Bishop(1, "C8"));
+        squares[3][0] = new Square("D", 8, new Queen(1, "D8"));
+        squares[4][0] = new Square("E", 8, new King(1, "E8"));
+        squares[5][0] = new Square("F", 8, new Bishop(1, "F8"));
+        squares[6][0] = new Square("G", 8, new Knight(1, "G8"));
+        squares[7][0] = new Square("H", 8, new Rook(1, "H8"));
 
-        squares[0][1] = new Square("A", 7, new Piece(1, "PAWN", "A7"));
-        squares[1][1] = new Square("B", 7, new Piece(1, "PAWN", "B7"));
-        squares[2][1] = new Square("C", 7, new Piece(1, "PAWN", "C7"));
-        squares[3][1] = new Square("D", 7, new Piece(1, "PAWN", "D7"));
-        squares[4][1] = new Square("E", 7, new Piece(1, "PAWN", "E7"));
-        squares[5][1] = new Square("F", 7, new Piece(1, "PAWN", "F7"));
-        squares[6][1] = new Square("G", 7, new Piece(1, "PAWN", "G7"));
-        squares[7][1] = new Square("H", 7, new Piece(1, "PAWN", "H7"));
+        squares[0][1] = new Square("A", 7, new Pawn(1, "A7"));
+        squares[1][1] = new Square("B", 7, new Pawn(1, "B7"));
+        squares[2][1] = new Square("C", 7, new Pawn(1, "C7"));
+        squares[3][1] = new Square("D", 7, new Pawn(1, "D7"));
+        squares[4][1] = new Square("E", 7, new Pawn(1, "E7"));
+        squares[5][1] = new Square("F", 7, new Pawn(1, "F7"));
+        squares[6][1] = new Square("G", 7, new Pawn(1, "G7"));
+        squares[7][1] = new Square("H", 7, new Pawn(1, "H7"));
 
         squares[0][2] = new Square("A", 6, null);
         squares[1][2] = new Square("B", 6, null);
@@ -58,23 +58,23 @@ public class ChessBoard {
         squares[6][5] = new Square("G", 3, null);
         squares[7][5] = new Square("H", 3, null);
 
-        squares[0][6] = new Square("A", 2, new Piece(0, "PAWN", "A2"));
-        squares[1][6] = new Square("B", 2, new Piece(0, "PAWN", "B2"));
-        squares[2][6] = new Square("C", 2, new Piece(0, "PAWN", "C2"));
-        squares[3][6] = new Square("D", 2, new Piece(0, "PAWN", "D2"));
-        squares[4][6] = new Square("E", 2, new Piece(0, "PAWN", "E2"));
-        squares[5][6] = new Square("F", 2, new Piece(0, "PAWN", "F2"));
-        squares[6][6] = new Square("G", 2, new Piece(0, "PAWN", "G2"));
-        squares[7][6] = new Square("H", 2, new Piece(0, "PAWN", "H2"));
+        squares[0][6] = new Square("A", 2, new Pawn(0, "A2"));
+        squares[1][6] = new Square("B", 2, new Pawn(0, "B2"));
+        squares[2][6] = new Square("C", 2, new Pawn(0, "C2"));
+        squares[3][6] = new Square("D", 2, new Pawn(0, "D2"));
+        squares[4][6] = new Square("E", 2, new Pawn(0, "E2"));
+        squares[5][6] = new Square("F", 2, new Pawn(0, "F2"));
+        squares[6][6] = new Square("G", 2, new Pawn(0, "G2"));
+        squares[7][6] = new Square("H", 2, new Pawn(0, "H2"));
 
-        squares[0][7] = new Square("A", 1, new Piece(0, "ROOK", "A1"));
-        squares[1][7] = new Square("B", 1, new Piece(0, "KNIGHT", "B1"));
-        squares[2][7] = new Square("C", 1, new Piece(0, "BISHOP", "C1"));
-        squares[3][7] = new Square("D", 1, new Piece(0, "QUEEN", "D1"));
-        squares[4][7] = new Square("E", 1, new Piece(0, "KING", "E1"));
-        squares[5][7] = new Square("F", 1, new Piece(0, "BISHOP", "F1"));
-        squares[6][7] = new Square("G", 1, new Piece(0, "KNIGHT", "G1"));
-        squares[7][7] = new Square("H", 1, new Piece(0, "ROOK", "H1"));
+        squares[0][7] = new Square("A", 1, new Rook(0, "A1"));
+        squares[1][7] = new Square("B", 1, new Knight(0, "B1"));
+        squares[2][7] = new Square("C", 1, new Bishop(0, "C1"));
+        squares[3][7] = new Square("D", 1, new Queen(0,  "D1"));
+        squares[4][7] = new Square("E", 1, new King(0, "E1"));
+        squares[5][7] = new Square("F", 1, new Bishop(0, "F1"));
+        squares[6][7] = new Square("G", 1, new Knight(0, "G1"));
+        squares[7][7] = new Square("H", 1, new Rook(0, "H1"));
     }
 
     public boolean isWhitePlaying() {
@@ -303,7 +303,7 @@ public class ChessBoard {
             for (int j = 0; j < 8; j++) {
                 Square square = squares[i][j];
                 if (square.equals(target)){
-                    squares[i][j] = new Square(col, row, new Piece(color, "QUEEN", (col+row)));
+                    squares[i][j] = new Square(col, row, new Queen(color, (col+row)));
                 }
             }
         }
@@ -317,8 +317,25 @@ public class ChessBoard {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 Square square = squares[i][j];
-                if (square.equals(target)){
-                    squares[i][j] = new Square(col, row, pie);
+                if (square.getColumn().equals(col) && square.getRow() == row) {
+                    if (pie instanceof Pawn) {
+                        squares[i][j] = new Square(col, row, new Pawn(pie.getColor(), pie.getLocation()));
+                    }
+                    else if (pie instanceof Bishop) {
+                        squares[i][j] = new Square(col, row, new Bishop(pie.getColor(), pie.getLocation()));
+                    }
+                    else if (pie instanceof King) {
+                        squares[i][j] = new Square(col, row, new King(pie.getColor(), pie.getLocation()));
+                    }
+                    else if (pie instanceof Knight) {
+                        squares[i][j] = new Square(col, row, new Knight(pie.getColor(), pie.getLocation()));
+                    }
+                    else if (pie instanceof Queen) {
+                        squares[i][j] = new Square(col, row, new Queen(pie.getColor(), pie.getLocation()));
+                    }
+                    else if (pie instanceof Rook) {
+                        squares[i][j] = new Square(col, row, new Rook(pie.getColor(), pie.getLocation()));
+                    }
                 }
             }
         }
@@ -337,21 +354,21 @@ public class ChessBoard {
             brdStr += "  ---------------------------------\n";
             brdStr += row;
             for (String har : harf) {
-                Piece p = getPieceAt(har + row);
+                Piece p =getPieceAt(har + row);
                 if (p == null) {
                     brdStr += " |  ";
                 } else {
-                    if (p.getRank().equals("ROOK")) {
+                    if (p instanceof Rook) {
                         brdStr += p.getColor() == 0 ? " | R" : " | r";
-                    } else if (p.getRank().equals("KNIGHT")) {
+                    } else if (p instanceof Knight) {
                         brdStr += p.getColor() == 0 ? " | N" : " | n";
-                    } else if (p.getRank().equals("BISHOP")) {
+                    } else if (p instanceof Bishop) {
                         brdStr += p.getColor() == 0 ? " | B" : " | b";
-                    } else if (p.getRank().equals("QUEEN")) {
+                    } else if (p instanceof Queen) {
                         brdStr += p.getColor() == 0 ? " | Q" : " | q";
-                    } else if (p.getRank().equals("KING")) {
+                    } else if (p instanceof King) {
                         brdStr += p.getColor() == 0 ? " | K" : " | k";
-                    } else if (p.getRank().equals("PAWN")) {
+                    } else if (p instanceof Pawn) {
                         brdStr += p.getColor() == 0 ? " | P" : " | p";
                     }
                 }
