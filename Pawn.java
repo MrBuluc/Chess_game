@@ -82,16 +82,5 @@ public class Pawn extends Piece{
         //update current location
         location = targetLocation;
         board.nextPlayer();
-}
-
-    @Override
-    public String toString() {
-        if(super.getColor() == 0){
-            return "P";
-        }
-        else{
-            return "p";
-        }
     }
-
 }
