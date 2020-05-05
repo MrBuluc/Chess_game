@@ -42,7 +42,7 @@ public class King extends Piece {
         int rowDif = Math.abs(lRow - tRow);
         if((location.isAtSameColumn(targetLocation) || location.isAtSameRow(targetLocation)) && 
         ((lRow + 1) == tRow || (intLcol + 1) == intTcol || (lRow - 1) == tRow || (intLcol - 1) == intTcol)){
-            //King is moving, check all squares in front, behind, right or left are empty
+            //King is moving, check targetLocation is empty
             validMove = targetLocation.isEmpty();
             if(!targetLocation.isEmpty()){
                 int color = targetLocation.getPiece().getColor();
