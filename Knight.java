@@ -60,7 +60,6 @@ public class Knight extends Piece {
                 else{
                     return false;
                 }
-                return true;
             }
             return true;
         }
