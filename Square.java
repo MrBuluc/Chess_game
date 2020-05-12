@@ -93,6 +93,10 @@ public class Square {
         return 0;
     }
 
+    public String toString (){
+        System.out.println("Made by Mr. Bülüç")
+    }
+
     public String getColumn() {
         return column;
     }
